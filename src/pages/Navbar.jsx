@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="p-4 w-full bg-blue-950 rounded-md sm:rounded-lg flex items-center gap-3 sm:justify-around">
+      <div className="p-4 w-full bg-slate-800 rounded-md sm:rounded-lg flex items-center gap-3 sm:justify-around">
         <div className="flex gap-2 sm:gap-10">
           <Link className="">
             <img
@@ -33,9 +33,9 @@ const Navbar = () => {
         </div>
         <div>
           <input
-            className="outline-none bg-white rounded-md min-w-[90%] md:w-[300px] lg:w-[400px] pl-4 text-gray-700 sm:h-8 h-7"
+            className="outline-none bg-slate-300 rounded-md min-w-[90%] md:w-[300px] lg:w-[400px] pl-4 text-gray-700 sm:h-8 h-7 placeholder-slate-500"
             type="text"
-            placeholder="Search here..."
+            placeholder="Search for city"
           />
         </div>
       </div>

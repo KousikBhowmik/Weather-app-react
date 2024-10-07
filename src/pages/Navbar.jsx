@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
 const Navbar = () => {
-  const [menuIcon , setMenuIcon] = useState(false)
+  const [menuIcon, setMenuIcon] = useState(false);
 
   return (
     <div className="flex flex-col">
-      <div className="p-4 w-full bg-slate-800 rounded-md sm:rounded-lg flex items-center gap-3 sm:justify-around">
-        <div className="flex gap-2 sm:gap-10">
+      <div className="p-4 w-full bg-slate-800 rounded-md sm:rounded-lg grid grid-cols-4 md:grid-cols-6">
+        <div className="flex items-center justify-center sm:col-span-2">
           <Link className="">
             <img
               onClick={() => setMenuIcon(!menuIcon)}
@@ -21,27 +21,31 @@ const Navbar = () => {
               src={assets.menu_close}
             />
           </Link>
-          <Link>
-            <img className="w-8 hidden sm:block" src={assets.menu_cloud} />
-          </Link>
-          <Link>
-            <img className="w-8 hidden sm:block" src={assets.menu_city} />
-          </Link>
-          <Link>
-            <img className="w-8 hidden sm:block" src={assets.menu_options} />
-          </Link>
+          <div className="grid grid-cols-3 gap-6">
+            <Link>
+              <img className="w-8 hidden sm:block" src={assets.menu_cloud} />
+            </Link>
+            <Link>
+              <img className="w-8 hidden sm:block" src={assets.menu_city} />
+            </Link>
+            <Link>
+              <img className="w-8 hidden sm:block" src={assets.menu_options} />
+            </Link>
+          </div>
         </div>
-        <div>
-          <input
-            className="outline-none bg-slate-300 rounded-md min-w-[90%] md:w-[300px] lg:w-[400px] pl-4 text-gray-700 sm:h-8 h-7 placeholder-slate-500"
-            type="text"
-            placeholder="Search for city"
-          />
-        </div>
+        <input
+          className=" col-span-3 sm:col-span-2 outline-none bg-slate-300 rounded-md pl-4 text-gray-700 placeholder-slate-500"
+          type="text"
+          placeholder="Search for city"
+        />
       </div>
-      <div className={` ${menuIcon? "block": "hidden"}  absolute top-[11vh] bg-slate-500 w-fit px-4 py-2 mt-2 rounded-md flex flex-col sm:hidden`}>
+      <div
+        className={` ${
+          menuIcon ? "block" : "hidden"
+        }  absolute top-[11vh] transform transition-all duration-1000 bg-slate-500 w-fit px-4 py-2 mt-2 rounded-md flex flex-col sm:hidden`}
+      >
         <Link className="mt-1 mb-1 flex items-center gap-1">
-          <img src={assets.menu_cloud} className="w-8 mt-1 mb-1" />
+          <img src={assets.menu_cloud} className="w-8 mt-1 mb-1"/>
           <p className=" text-sm text-gray-950">Weather</p>
         </Link>
         <Link className="mt-1 mb-1 flex items-center gap-1">

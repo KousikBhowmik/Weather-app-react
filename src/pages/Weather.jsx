@@ -3,22 +3,24 @@ import { assets } from "../assets/assets";
 
 const Weather = () => {
   return (
-    <div className=" flex flex-col md:flex-row gap-4 sm:gap-8  pt-4 sm:justify-between md:grid md:grid-cols-3">
+    <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8  pt-4 sm:justify-between">
       {/* left container  */}
       <div className="flex flex-col gap-3 md:col-span-2">
         {/* lC-first box */}
-        <div className="flex  flex-col-reverse md:flex-row md:justify-between   md:px-8 items-center p-4 bg-slate-800 rounded-md md:rounde-lg lg:p-10 ">
-          <div className="flex flex-col items-center ">
-            <div className="flex flex-col items-center mb-4">
-              <h1 className="font-semibold text-2xl text-white">Barcelona</h1>
-              <p className="text-sm text-slate-500">Chance of rain 0%</p>
-            </div>
-            <h1 className="font-semibold text-4xl text-white">00°</h1>
+        <div className="flex  flex-col-reverse gap-4 sm:grid  sm:grid-cols-3 md:px-8 items-center p-4 bg-slate-800 rounded-md md:rounde-lg lg:p-10 ">
+          <div className="flex flex-col items-center mb-4">
+            <h1 className="font-semibold text-2xl md:text-xl lg:text-2xl text-white">Barcelona</h1>
+            <p className="text-sm md:text-[12px] lg:text-sm text-slate-500">Chance of rain 0%</p>
           </div>
-          <img
-            className="w-[100px] mb-3 md:w-[80px]  lg:w-[100px] xl:w-[120px] lg:mr-8 "
-            src={assets.temp_icon}
-          />
+          <h1 className="font-semibold sm:font-normal text-center text-4xl sm:text-[50px] md:text-[40px] lg:text-[50px] xl:[55px]  text-white">
+            00°
+          </h1>
+          <div className="mb:-3 flex justify-center items-center">
+            <img
+              className="w-[100px] md:w-[80px] lg:w-[100px] xl:-[120px]"
+              src={assets.temp_icon}
+            />
+          </div>
         </div>
         {/* LC- second box */}
         <div className="flex flex-col p-4 bg-slate-800 rounded-md gap-2 cursor-pointer">

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import { WeatherContext } from "../context/context.jsx";
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState(false);
+  const { weather, loading, error, city, setCity, getWeather } =
+    useContext(WeatherContext);
+  const settingCity = (e) => {
+      if (e.key === "Enter"){
+        setCity(e.target.value)
+      }
+  }
 
   return (
     <div className="flex flex-col">
@@ -36,6 +44,7 @@ const Navbar = () => {
         <input
           className=" col-span-3 sm:col-span-2 outline-none bg-slate-300 rounded-md pl-4 text-gray-700 placeholder-slate-500"
           type="text"
+          onKeyDown={settingCity}
           placeholder="Search for city"
         />
       </div>

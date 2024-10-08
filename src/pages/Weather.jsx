@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { assets } from "../assets/assets";
+import { WeatherContext } from "../context/context.jsx";
+
 
 const Weather = () => {
-  return (
+  const { weather, loading, error, city, setCity, getWeather } =
+    useContext(WeatherContext);
+  useEffect(() => {
+   getWeather(city) ;
+  }, [city]);
+  
+  return weather ? (
     <div className="grid grid-cols-1 md:col-span-4 gap-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
         <div className="sm:col-span-4 bg-slate-800 rounded-md md:rounded-lg flex flex-col-reverse items-center justify-center  gap-3 py-6">
-          <div>
-            <p className="text-2xl text-yellow-300">Barcelona</p>
-            <p className="text-[12px] text-slate-500">Chance of rain 0%</p>
+          <div className="flex flex-col items-center">
+            <p className="text-2xl text-yellow-300">{weather.name}</p>
+            <p className="text-[12px] text-slate-500">{weather.typeWeather}</p>
           </div>
           <p className="text-[36px] text-slate-300 mt-4">
-            30°<span className="text-[22px]">c</span>
+            {weather["mainData"]["temp"]}°<span className="text-[22px]">c</span>
           </p>
           <img className="w-[80px] xl:w-[120px]" src={assets.temp_icon} />
         </div>
@@ -86,7 +94,7 @@ const Weather = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg" >
+      <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg">
         <p className="text-[12px] text-slate-400">AIR CONDITION</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
@@ -94,14 +102,18 @@ const Weather = () => {
               <img className="w-4" src={assets.feel_icon} />
               <p className="text-sm text-yellow-200">Real feel</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">30°</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather["mainData"]["feel_like"]}°
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
             <div className="flex gap-2">
               <img className="w-4" src={assets.wind_icon} />
               <p className="text-sm text-yellow-200">Wind</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">0.3km/h</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather["windData"]}km/h
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
             <div className="flex gap-2">
@@ -113,13 +125,17 @@ const Weather = () => {
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
             <div className="flex gap-2">
               <img className="w-4" src={assets.uv_icon} />
-              <p className="text-sm text-yellow-200">UV index</p>
+              <p className="text-sm text-yellow-200">Humidity</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">3</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather["mainData"]["humidity"]}
+            </p>
           </div>
         </div>
       </div>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 

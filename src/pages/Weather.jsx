@@ -135,7 +135,15 @@ const Weather = () => {
       </div>
     </div>
   ) : (
-    <div>Loading...</div>
+    <div className="md:col-span-4 flex justify-center items-center space-x-2">
+      {[...Array(12)].map((_, i) => (
+        <div
+          key={i}
+          className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
+          style={{ animationDelay: `${i * 0.1}s` }}
+        ></div>
+      ))}
+    </div>
   );
 };
 

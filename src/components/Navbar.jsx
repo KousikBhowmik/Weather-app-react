@@ -10,6 +10,7 @@ const Navbar = () => {
   const settingCity = (e) => {
       if (e.key === "Enter"){
         setCity(e.target.value)
+        e.target.value = ''
       }
   }
 

@@ -1,104 +1,121 @@
 import React from "react";
 import { assets } from "../assets/assets";
-import data from "../assets/data.js";
-import { useEffect } from "react";
 
 const Weather = () => {
- useEffect(() => {
-    data("kolkata");
- }, []);
-
   return (
-    <div className=" grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8  pt-4 sm:justify-between">
-      {/* left container  */}
-      <div className="flex flex-col gap-3 md:col-span-2">
-        {/* lC-first box */}
-        <div className="flex  flex-col-reverse gap-4 sm:grid  sm:grid-cols-3 md:px-8 items-center p-4 bg-slate-800 rounded-md md:rounde-lg lg:p-10 ">
-          <div className="flex flex-col items-center mb-4">
-            <h1 className="font-semibold text-2xl md:text-xl lg:text-2xl text-white">
-              Barcelona
-            </h1>
-            <p className="text-sm md:text-[12px] lg:text-sm text-slate-500">
-              Chance of rain 0%
-            </p>
+    <div className="grid grid-cols-1 md:col-span-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
+        <div className="sm:col-span-4 bg-slate-800 rounded-md md:rounded-lg flex flex-col-reverse items-center justify-center  gap-3 py-6">
+          <div>
+            <p className="text-2xl text-yellow-300">Barcelona</p>
+            <p className="text-[12px] text-slate-500">Chance of rain 0%</p>
           </div>
-          <h1 className="font-semibold sm:font-normal text-center text-4xl sm:text-[50px] md:text-[40px] lg:text-[50px] xl:[55px]  text-white">
-            00°
-          </h1>
-          <div className="mb:-3 flex justify-center items-center">
-            <img
-              className="w-[100px] md:w-[80px] lg:w-[100px] xl:-[120px]"
-              src={assets.temp_icon}
-            />
-          </div>
-        </div>
-        {/* LC- second box */}
-        <div className="flex flex-col p-4 bg-slate-800 rounded-md gap-2 cursor-pointer">
-          <p className="text-sm font-semibold text-slate-500">
-            TODAY'S FORECASE
+          <p className="text-[36px] text-slate-300 mt-4">
+            30°<span className="text-[22px]">c</span>
           </p>
-          <div className="flex gap-4 flex-wrap  ">
-            <div className=" flex flex-col items-center gap-4 ">
-              <p className="text-slate-400">{`6:00AM`}</p>
-              <div>
-                <img className="w-10" src={assets.temp_icon} />
-              </div>
-              <h2 className="font-semibold text-white">25°</h2>
-            </div>
-          </div>
+          <img className="w-[80px] xl:w-[120px]" src={assets.temp_icon} />
         </div>
-        {/* LC-3rd box */}
-        <div className="flex flex-col p-4 bg-slate-800 rounded-md gap-2 cursor-pointer">
-          <p className="text-sm font-semibold text-slate-500">AIR CONDITIONS</p>
-          <div className="grid grid-cols-2 grid-rows-2 gap-2 lg:grid-cols-4 lg:grid-rows-1">
-            <div className="flex flex-col items-center bg-slate-600 p-4 rounded-md">
-              <div className="flex items-center gap-2 ">
-                <img className="w-8" src={assets.feel_icon} />
-                <p className="text-[12px] sm:text-[14px] text-amber-100">Real feel</p>
-              </div>
-              <h1 className="font-semibold text-xl text-gray-300">30°</h1>
-            </div>
-            <div className="flex flex-col items-center bg-slate-600 p-4 rounded-md">
-              <div className="flex items-center gap-2 ">
-                <img className="w-8" src={assets.wind_icon} />
-                <p className="text-[12px] sm:text-[14px] text-amber-100">Wind</p>
-              </div>
-              <h1 className="font-semibold text-xl text-gray-300">0.2km/h</h1>
-            </div>
-            <div className="flex flex-col items-center bg-slate-600 p-4 rounded-md">
-              <div className="flex items-center gap-2 ">
-                <img className="w-8" src={assets.rain_icon} />
-                <p className="text-[12px] sm:text-[14px] text-amber-100">Chance of rain</p>
-              </div>
-              <h1 className="font-semibold text-xl text-gray-300">11.2%</h1>
-            </div>
-            <div className="flex flex-col items-center bg-slate-600 p-4 rounded-md">
-              <div className="flex items-center gap-2 ">
-                <img className="w-8" src={assets.uv_icon} />
-                <p className="text-[12px] sm:text-[14px] text-amber-100">UV Index</p>
-              </div>
-              <h1 className="font-semibold text-xl text-gray-300">3</h1>
-            </div>
+        <div className=" min-h-[80px] sm:col-span-2 grid grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 gap-4  ">
+          <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+            <p className="text-2xl text-slate-400 ">00:00</p>
+            <p className="text-2xl text-slate-500">AM</p>
+          </div>
+          <div className="flex items-center justify-center bg-slate-800 rounded-md md:rounded-lg text-xl text-slate-400 ">
+            08/10/2024
           </div>
         </div>
       </div>
-      {/* roght container */}
-
-      <div className="  flex flex-col sm:gap-2 p-4 md:p-6  lg:p-8 bg-slate-800 rounded-md sm:rounded-lg md:col-span-1">
-        {/* sm:min-w-[200px] md:min-w-[300px] lg:min-w-[400px] xl:min-w-[420px] */}
-        <p className="text-sm font-semibold text-slate-500 mb-4">
-          7-DAY FORECAST
-        </p>
-        <div className="flex flex-col gap-5  sm:gap-10">
-          <div className="flex justify-between sm:gap-[10px]">
-            <p className="text-slate-500">Today</p>
-            <div className="flex ">
-              <img className="w-8 sm:w-6 md:w-8" src={assets.temp_icon} />
+      <div className="flex flex-col p-5 bg-slate-800 gap-4 rounded-md md:rounded-lg">
+        <p className="text-slate-500 text-[12px]">TODAY'S FORECAST</p>
+        <div className="flex flex-wrap gap-8 ">
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
             </div>
-            <div className="flex mr-8 sm:mr-4">
-              <p className="font-semibold text-slate-100">30</p>
-              <p className="text-slate-600">/22</p>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
             </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg" >
+        <p className="text-[12px] text-slate-400">AIR CONDITION</p>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+            <div className="flex gap-2">
+              <img className="w-4" src={assets.feel_icon} />
+              <p className="text-sm text-yellow-200">Real feel</p>
+            </div>
+            <p className="text-xl font-semibold text-slate-300">30°</p>
+          </div>
+          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+            <div className="flex gap-2">
+              <img className="w-4" src={assets.wind_icon} />
+              <p className="text-sm text-yellow-200">Wind</p>
+            </div>
+            <p className="text-xl font-semibold text-slate-300">0.3km/h</p>
+          </div>
+          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+            <div className="flex gap-2">
+              <img className="w-4" src={assets.rain_icon} />
+              <p className="text-sm text-yellow-200">Chance of rain</p>
+            </div>
+            <p className="text-xl font-semibold text-slate-300">0%</p>
+          </div>
+          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+            <div className="flex gap-2">
+              <img className="w-4" src={assets.uv_icon} />
+              <p className="text-sm text-yellow-200">UV index</p>
+            </div>
+            <p className="text-xl font-semibold text-slate-300">3</p>
           </div>
         </div>
       </div>

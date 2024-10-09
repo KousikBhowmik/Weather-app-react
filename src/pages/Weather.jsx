@@ -2,14 +2,26 @@ import React, { useEffect, useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { WeatherContext } from "../context/context.jsx";
 
-
 const Weather = () => {
-  const { weather, loading, error, city, setCity, getWeather } =
+  const { weather, loading, error, city, getWeather, mainTime, getTime } =
     useContext(WeatherContext);
+
   useEffect(() => {
-   getWeather(city) ;
+    getWeather(city);
+    getTime();
+    const interval2= setInterval(() => {
+      getWeather(city);
+    }, 60000);
+    const interval = setInterval(() => {
+      getTime();
+    }, 10000);
+
+    return () =>{
+      clearInterval(interval2);
+      clearInterval(interval);
+    } 
   }, [city]);
-  
+
   return weather ? (
     <div className="grid grid-cols-1 md:col-span-4 gap-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
@@ -25,11 +37,11 @@ const Weather = () => {
         </div>
         <div className=" min-h-[80px] sm:col-span-2 grid grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 gap-4  ">
           <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-            <p className="text-2xl text-slate-400 ">00:00</p>
-            <p className="text-2xl text-slate-500">AM</p>
+            <p className="text-2xl text-slate-400 ">{`${mainTime["hour"]}:${mainTime["min"]}`}</p>
+            <p className="text-2xl text-slate-500">{mainTime["ampm"]}</p>
           </div>
           <div className="flex items-center justify-center bg-slate-800 rounded-md md:rounded-lg text-xl text-slate-400 ">
-            08/10/2024
+            {`${mainTime["date"]}/${mainTime["month"]}/${mainTime["year"]}`}
           </div>
         </div>
       </div>

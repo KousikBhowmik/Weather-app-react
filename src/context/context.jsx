@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from "react";
-import { fetchWeatherData } from "../api/apiData.js";
+import React, { createContext, useState } from "react";
+import { fetchWeatherData, timeFun } from "../api/apiData.js";
 
 export const WeatherContext = createContext();
 
@@ -8,6 +8,12 @@ export const WeatherProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const [city, setCity] = useState();
+  const [mainTime, setMainTime] = useState(null);
+
+  const getTime = async () =>{
+    const tempTime = await timeFun();
+    setMainTime(tempTime);
+  }
 
 
   const getWeather = async (city) => {
@@ -24,7 +30,19 @@ export const WeatherProvider = ({ children }) => {
   };
 
   return (
-    <WeatherContext.Provider value={{ weather, loading, error, city, setCity, getWeather }}>
+    <WeatherContext.Provider
+      value={{
+        weather,
+        loading,
+        error,
+        city,
+        setCity,
+        getWeather,
+        mainTime,
+        setMainTime,
+        getTime,
+      }}
+    >
       {children}
     </WeatherContext.Provider>
   );

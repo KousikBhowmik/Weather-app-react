@@ -1,25 +1,26 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { assets } from "../assets/assets";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
+
   const { weather, loading, error, city, getWeather, mainTime, getTime } =
     useContext(WeatherContext);
 
   useEffect(() => {
     getWeather(city);
     getTime();
-    const interval2= setInterval(() => {
+    const interval2 = setInterval(() => {
       getWeather(city);
     }, 60000);
     const interval = setInterval(() => {
       getTime();
     }, 10000);
 
-    return () =>{
+    return () => {
       clearInterval(interval2);
       clearInterval(interval);
-    } 
+    };
   }, [city]);
 
   return weather ? (
@@ -47,7 +48,16 @@ const Weather = () => {
       </div>
       <div className="flex flex-col p-5 bg-slate-800 gap-4 rounded-md md:rounded-lg">
         <p className="text-slate-500 text-[12px]">TODAY'S FORECAST</p>
-        <div className="flex flex-wrap gap-8 ">
+        <div className="flex flex-wrap gap-8">
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          
           <div className="flex flex-col gap-2 items-center">
             <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
               <p className="text-sm text-slate-300 ">00:00</p>
@@ -64,46 +74,7 @@ const Weather = () => {
             <img className="w-8" src={assets.temp_icon} />
             <p className="text-slate-300 text-xl">24°</p>
           </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
+          
         </div>
       </div>
       <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg">

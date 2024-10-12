@@ -1,122 +1,148 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
-import { assets } from "../assets/assets";
+import React, {
+  weatherIcons,
+  useEffect,
+  useContext,
+  useState,
+  useRef,
+} from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
+  const {
+    assets,
+    weatherIcons,
+    icon,
+    weather,
+    loading,
+    error,
+    city,
+    setCity,
+    getWeather,
+  } = useContext(WeatherContext);
 
-  const { weather, loading, error, city, getWeather, mainTime, getTime } =
-    useContext(WeatherContext);
 
   useEffect(() => {
     getWeather(city);
-    getTime();
-    const interval2 = setInterval(() => {
-      getWeather(city);
-    }, 60000);
-    const interval = setInterval(() => {
-      getTime();
-    }, 10000);
-
-    return () => {
-      clearInterval(interval2);
-      clearInterval(interval);
-    };
   }, [city]);
 
+
   return weather ? (
-    <div className="grid grid-cols-1 md:col-span-4 gap-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
-        <div className="sm:col-span-4 bg-slate-800 rounded-md md:rounded-lg flex flex-col-reverse items-center justify-center  gap-3 py-6">
-          <div className="flex flex-col items-center">
-            <p className="text-2xl text-yellow-300">{weather.name}</p>
-            <p className="text-[12px] text-slate-500">{weather.typeWeather}</p>
-          </div>
-          <p className="text-[36px] text-slate-300 mt-4">
-            {weather["mainData"]["temp"]}°<span className="text-[22px]">c</span>
-          </p>
-          <img className="w-[80px] xl:w-[120px]" src={assets.temp_icon} />
-        </div>
-        <div className=" min-h-[80px] sm:col-span-2 grid grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 gap-4  ">
-          <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-            <p className="text-2xl text-slate-400 ">{`${mainTime["hour"]}:${mainTime["min"]}`}</p>
-            <p className="text-2xl text-slate-500">{mainTime["ampm"]}</p>
-          </div>
-          <div className="flex items-center justify-center bg-slate-800 rounded-md md:rounded-lg text-xl text-slate-400 ">
-            {`${mainTime["date"]}/${mainTime["month"]}/${mainTime["year"]}`}
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col p-5 bg-slate-800 gap-4 rounded-md md:rounded-lg">
-        <p className="text-slate-500 text-[12px]">TODAY'S FORECAST</p>
-        <div className="flex flex-wrap gap-8">
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg">
-        <p className="text-[12px] text-slate-400">AIR CONDITION</p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
-            <div className="flex gap-2">
-              <img className="w-4" src={assets.feel_icon} />
-              <p className="text-sm text-yellow-200">Real feel</p>
-            </div>
-            <p className="text-xl font-semibold text-slate-300">
-              {weather["mainData"]["feel_like"]}°
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
-            <div className="flex gap-2">
-              <img className="w-4" src={assets.wind_icon} />
-              <p className="text-sm text-yellow-200">Wind</p>
-            </div>
-            <p className="text-xl font-semibold text-slate-300">
-              {weather["windData"]}km/h
-            </p>
-          </div>
-          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
-            <div className="flex gap-2">
-              <img className="w-4" src={assets.rain_icon} />
-              <p className="text-sm text-yellow-200">Chance of rain</p>
-            </div>
-            <p className="text-xl font-semibold text-slate-300">0%</p>
-          </div>
-          <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
-            <div className="flex gap-2">
-              <img className="w-4" src={assets.uv_icon} />
-              <p className="text-sm text-yellow-200">Humidity</p>
-            </div>
-            <p className="text-xl font-semibold text-slate-300">
-              {weather["mainData"]["humidity"]}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div>hell0o
+      <img className="w-20" src={icon} alt="" />
     </div>
+    // <div className="grid grid-cols-1 md:col-span-4 gap-4">
+    //   <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
+    //     <div className="sm:col-span-4 bg-slate-800 rounded-md md:rounded-lg flex flex-col-reverse items-center justify-center  gap-3 py-6">
+    //       <div className="flex flex-col items-center">
+    //         <p className="text-2xl text-yellow-300">{}</p>
+    //         <p className="text-[12px] text-slate-500">{}</p>
+    //       </div>
+    //       <p className="text-[36px] text-slate-300 mt-4">
+    //         {weather["mainData"]["temp"]}°<span className="text-[22px]">c</span>
+    //       </p>
+    //       <img
+    //         className="w-[80px] xl:w-[120px]"
+    //         src={icon}
+    //       />
+    //     </div>
+    //     <div className=" min-h-[80px] sm:col-span-2 grid grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 gap-4  ">
+    //       <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+    //         <p className="text-2xl text-slate-400 ">{`${mainTime["hour"]}:${mainTime["min"]}`}</p>
+    //         <p className="text-2xl text-slate-500">{mainTime["ampm"]}</p>
+    //       </div>
+    //       <div className="flex items-center justify-center bg-slate-800 rounded-md md:rounded-lg text-xl text-slate-400 ">
+    //         {`${mainTime["date"]}/${mainTime["month"]}/${mainTime["year"]}`}
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div className="flex flex-col p-5 bg-slate-800 gap-4 rounded-md md:rounded-lg">
+    //     <p className="text-slate-400 text-[12px]">TODAY'S FORECAST</p>
+    //     <div className="flex flex-wrap gap-8">
+    //       <div className="flex flex-col gap-2 items-center">
+    //         <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+    //           <p className="text-sm text-slate-300 ">00:00</p>
+    //           <p className="text-sm text-slate-400">AM</p>
+    //         </div>
+    //         <img className="w-8" src={assets.temp_icon} />
+    //         <p className="text-slate-300 text-xl">24°</p>
+    //       </div>
+
+    //       <div className="flex flex-col gap-2 items-center">
+    //         <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+    //           <p className="text-sm text-slate-300 ">00:00</p>
+    //           <p className="text-sm text-slate-400">AM</p>
+    //         </div>
+    //         <img className="w-8" src={assets.temp_icon} />
+    //         <p className="text-slate-300 text-xl">24°</p>
+    //       </div>
+    //       <div className="flex flex-col gap-2 items-center">
+    //         <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+    //           <p className="text-sm text-slate-300 ">00:00</p>
+    //           <p className="text-sm text-slate-400">AM</p>
+    //         </div>
+    //         <img className="w-8" src={assets.temp_icon} />
+    //         <p className="text-slate-300 text-xl">24°</p>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg">
+    //     <p className="text-[12px] text-slate-400">AIR CONDITION</p>
+    //     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.feel_icon} />
+    //           <p className="text-sm text-yellow-200">Real feel</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">
+    //           {weather["mainData"]["feel_like"]}°
+    //         </p>
+    //       </div>
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.wind_icon} />
+    //           <p className="text-sm text-yellow-200">Wind</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">
+    //           {weather["windData"]}km/h
+    //         </p>
+    //       </div>
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.rain_icon} />
+    //           <p className="text-[12px] text-yellow-200">Chance of rain</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">0%</p>
+    //       </div>
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.humidity_icon} />
+    //           <p className="text-sm text-yellow-200">Humidity</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">
+    //           {weather["mainData"]["humidity"]}
+    //         </p>
+    //       </div>
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.uv_icon} />
+    //           <p className="text-sm text-yellow-200">UV</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">
+    //           {weather["mainData"]["humidity"]}
+    //         </p>
+    //       </div>
+    //       <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
+    //         <div className="flex gap-2">
+    //           <img className="w-4" src={assets.cloud_icon} />
+    //           <p className="text-sm text-yellow-200">Cloud</p>
+    //         </div>
+    //         <p className="text-xl font-semibold text-slate-300">
+    //           {weather["mainData"]["humidity"]}
+    //         </p>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   ) : (
     <div className="md:col-span-4 flex justify-center items-center space-x-2">
       {[...Array(12)].map((_, i) => (

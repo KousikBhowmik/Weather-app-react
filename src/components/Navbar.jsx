@@ -5,14 +5,13 @@ import { WeatherContext } from "../context/context.jsx";
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState(false);
-  const { weather, loading, error, city, setCity, getWeather } =
-    useContext(WeatherContext);
+  const { weather, city, setCity } = useContext(WeatherContext);
   const settingCity = (e) => {
-      if (e.key === "Enter"){
-        setCity(e.target.value)
-        e.target.value = ''
-      }
-  }
+    if (e.key === "Enter") {
+      setCity(e.target.value);
+      e.target.value = "";
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -55,7 +54,7 @@ const Navbar = () => {
         }  absolute top-[11vh] transform transition-all duration-1000 bg-slate-500 w-fit px-4 py-2 mt-2 rounded-md flex flex-col sm:hidden`}
       >
         <Link className="mt-1 mb-1 flex items-center gap-1">
-          <img src={assets.menu_cloud} className="w-8 mt-1 mb-1"/>
+          <img src={assets.menu_cloud} className="w-8 mt-1 mb-1" />
           <p className=" text-sm text-gray-950">Weather</p>
         </Link>
         <Link className="mt-1 mb-1 flex items-center gap-1">

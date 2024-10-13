@@ -1,11 +1,20 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { assets } from "../assets/assets";
 import { WeatherContext } from "../context/context.jsx";
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState(false);
-  const { weather, city, setCity } = useContext(WeatherContext);
+   const {
+     assets,
+     icon,
+     weather,
+     loading,
+     error,
+     city,
+     setCity,
+     getWeather,
+     hourData,
+   } = useContext(WeatherContext);
   const settingCity = (e) => {
     if (e.key === "Enter") {
       setCity(e.target.value);

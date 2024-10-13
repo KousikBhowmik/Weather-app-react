@@ -11,6 +11,7 @@ export const WeatherProvider = ({ children }) => {
   const [city, setCity] = useState();
   const [icon, setIcon] = useState(assets.defaulte);
   const [hourData, setHourData] = useState(null);
+  const [sdfData , setSdfData] = useState(null)
 
   const getWeather = async (city) => {
     try {
@@ -22,6 +23,9 @@ export const WeatherProvider = ({ children }) => {
       }
       setHourData(data.dayTemp);
       setWeather(data);
+      setSdfData(data.sdfArray);
+      
+
       setError(null);
     } catch (err) {
       setError("Failed to fetch weather data");
@@ -44,6 +48,8 @@ export const WeatherProvider = ({ children }) => {
         setIcon,
         hourData,
         setHourData,
+        sdfData,
+        setSdfData,
       }}
     >
       {children}

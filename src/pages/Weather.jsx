@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {

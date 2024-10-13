@@ -1,28 +1,43 @@
-import React, {
-  useEffect,
-  useContext,
-  useState,
-  useRef,
-} from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
-  const {
-    assets,
-    icon,
-    weather,
-    loading,
-    error,
-    city,
-    setCity,
-    getWeather,
-  } = useContext(WeatherContext);
-  
+  const { assets, icon, weather, loading, error, city, setCity, getWeather } =
+    useContext(WeatherContext);
+
+  const scrollContainer = useRef(null);
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  const handleMouseDown = (e) => {
+    isDown = true;
+    scrollContainer.current.classList.add("scrolling");
+    startX = e.pageX - scrollContainer.current.offsetLeft;
+    scrollLeft = scrollContainer.current.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    isDown = false;
+    scrollContainer.current.classList.remove("scrolling");
+  };
+
+  const handleMouseUp = () => {
+    isDown = false;
+    scrollContainer.current.classList.remove("scrolling");
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainer.current.offsetLeft;
+    const walk = (x - startX) * 2; // Increase scroll sensitivity
+    scrollContainer.current.scrollLeft = scrollLeft - walk;
+  };
 
   useEffect(() => {
     getWeather(city);
   }, [city]);
-
 
   return weather ? (
     <div className="grid grid-cols-1 md:col-span-4 gap-4">
@@ -38,18 +53,55 @@ const Weather = () => {
           <img className="w-[80px] xl:w-[120px]" src={icon} />
         </div>
         <div className=" min-h-[80px] sm:col-span-2 grid grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 gap-4  ">
-          {/* <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-            <p className="text-2xl text-slate-400 ">{`${mainTime["hour"]}:${mainTime["min"]}`}</p>
-            <p className="text-2xl text-slate-500">{mainTime["ampm"]}</p>
+          <div className="flex flex-col justify-center items-center gap-3 p-3  bg-slate-800 rounded-md md:rounded-lg">
+            <img className="w-[50px] lg:w-[60px]" src={assets.sun_rise} />
+            <p className="text-slate-400 font-semibold text-md">
+              {weather.cwc["sun_rise"]}
+            </p>
           </div>
-          <div className="flex items-center justify-center bg-slate-800 rounded-md md:rounded-lg text-xl text-slate-400 ">
-            {`${mainTime["date"]}/${mainTime["month"]}/${mainTime["year"]}`}
-          </div> */}
+          <div className="flex flex-col justify-center items-center gap-3 p-3  bg-slate-800 rounded-md md:rounded-lg">
+            <img className="w-[50px] lg:w-[60px]" src={assets.sun_set} />
+            <p className="text-slate-400 font-semibold text-md">
+              {weather.cwc["sun_set"]}
+            </p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col p-5 bg-slate-800 gap-4 rounded-md md:rounded-lg">
         <p className="text-slate-400 text-[12px]">TODAY'S FORECAST</p>
-        <div className="flex flex-wrap gap-8">
+        <div
+          ref={scrollContainer}
+          className="flex gap-8 overflow-x-auto scroll-smooth cursor-pointer select-none"
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          style={{ whiteSpace: "nowrap" }}
+        >
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+              <p className="text-sm text-slate-300 ">00:00</p>
+              <p className="text-sm text-slate-400">AM</p>
+            </div>
+            <img className="w-8" src={assets.temp_icon} />
+            <p className="text-slate-300 text-xl">24°</p>
+          </div>
           <div className="flex flex-col gap-2 items-center">
             <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
               <p className="text-sm text-slate-300 ">00:00</p>
@@ -112,21 +164,27 @@ const Weather = () => {
               <img className="w-4" src={assets.humidity_icon} />
               <p className="text-sm text-yellow-200">Humidity</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">{weather.cc["humidity"]}</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather.cc["humidity"]}
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
             <div className="flex gap-2">
               <img className="w-4" src={assets.uv_icon} />
               <p className="text-sm text-yellow-200">UV</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">{weather.cc["uv"]}</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather.cc["uv"]}
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2 justify-center py-3 bg-slate-600 rounded-md md:rounded-lg">
             <div className="flex gap-2">
               <img className="w-4" src={assets.cloud_icon} />
               <p className="text-sm text-yellow-200">Cloud</p>
             </div>
-            <p className="text-xl font-semibold text-slate-300">{weather.cc["cloud"]}</p>
+            <p className="text-xl font-semibold text-slate-300">
+              {weather.cc["cloud"]}
+            </p>
           </div>
         </div>
       </div>

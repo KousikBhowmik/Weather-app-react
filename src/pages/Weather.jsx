@@ -44,9 +44,9 @@ const Weather = () => {
     scrollContainer.current.scrollLeft = scrollLeft - walk;
   };
 
-  // useEffect(() => {
-  //   getWeather(city);
-  // }, [city]);
+  useEffect(() => {
+    getWeather(city);
+  }, [city]);
 
   return weather ? (
     <div className="grid grid-cols-1 md:col-span-4 gap-4">

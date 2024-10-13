@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useRef } from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
+
   const {
     assets,
     icon,

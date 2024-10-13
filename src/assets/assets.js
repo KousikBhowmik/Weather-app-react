@@ -65,6 +65,21 @@ import _1276 from "./weather_images/1276.png";
 import _1279 from "./weather_images/1279.png";
 import _1282 from "./weather_images/1282.png";
 
+// city img
+import Kolkata from "./city_images/kolkata.jpg";
+import Bombay from "./city_images/bombay.jpg";
+import Chennai from "./city_images/chennai.jpg";
+import Delhi from "./city_images/delhi.jpg";
+import Jaipur from "./city_images/jaipur.jpg";
+import Bengaluru from "./city_images/bengaluru.jpg";
+import Barcelona from "./city_images/barcelona.jpg";
+import Madrid from "./city_images/madrid.jpg";
+import Milan from "./city_images/milan.jpg";
+import Roma from "./city_images/roma.jpg";
+import Manchester from "./city_images/manchester.jpg";
+import London from "./city_images/london.jpg";
+import Hyderabad from "./city_images/hyderabad.jpg";
+
 const assets = {
   menu_bar,
   menu_options,
@@ -130,6 +145,36 @@ const assets = {
   _1276,
   _1279,
   _1282,
+  // city name
+  Kolkata,
+  Bombay,
+  Chennai,
+  Delhi,
+  Jaipur,
+  Bengaluru,
+  Barcelona,
+  Madrid,
+  Milan,
+  Roma,
+  Manchester,
+  London,
+  Hyderabad,
 };
 
-export { assets };
+const cityNames = [
+  "Kolkata",
+  "Bombay",
+  "Chennai",
+  "Delhi",
+  "Jaipur",
+  "Bengaluru",
+  "Barcelona",
+  "Madrid",
+  "Milan",
+  "Roma",
+  "Manchester",
+  "London",
+  "Hyderabad",
+];
+
+export { assets, cityNames };

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Weather from "./pages/Weather.jsx";
 import SevenDay from "./components/SevenDay.jsx";
 import City from "./pages/City.jsx";
+import Others from "./pages/Others.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Weather />} />
           <Route path="/city" element={<City />} />
+          <Route path="/others" element={<Others />} />
+          <Route path="/others" element={<Others />} />
         </Routes>
         <SevenDay />
       </div>

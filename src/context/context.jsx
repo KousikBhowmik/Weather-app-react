@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { fetchCurrentWeather } from "../api/apiHandle.js";
-import { assets } from "../assets/assets.js";
+import { assets, cityNames } from "../assets/assets.js";
 
 export const WeatherContext = createContext();
 
@@ -38,6 +38,7 @@ export const WeatherProvider = ({ children }) => {
     <WeatherContext.Provider
       value={{
         assets,
+        cityNames,
         weather,
         loading,
         error,

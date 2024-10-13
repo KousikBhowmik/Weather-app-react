@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const apiKey = import.meta.env.VITE_API_KEY;
-const MAIN_URL = "http://api.weatherapi.com/v1";
+const MAIN_URL = "https://api.weatherapi.com/v1";
 
 export const fetchCurrentWeather = async (city="kolkata") => {
     const URL = MAIN_URL + "/forecast.json";

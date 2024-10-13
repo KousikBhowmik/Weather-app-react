@@ -2,8 +2,17 @@ import React, { useEffect, useContext, useState, useRef } from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
-  const { assets, icon, weather, loading, error, city, setCity, getWeather } =
-    useContext(WeatherContext);
+  const {
+    assets,
+    icon,
+    weather,
+    loading,
+    error,
+    city,
+    setCity,
+    getWeather,
+    hourData,
+  } = useContext(WeatherContext);
 
   const scrollContainer = useRef(null);
   let isDown = false;
@@ -78,55 +87,20 @@ const Weather = () => {
           onMouseMove={handleMouseMove}
           style={{ whiteSpace: "nowrap" }}
         >
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
+          {hourData.map((data, index) => (
+            <div key={index} className="flex flex-col gap-2 items-center">
+              <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
+                <p className="text-sm text-slate-300">{data.time["hour"]}:00</p>
+                <p className="text-sm text-slate-400">{data.time["ampm"]}</p>
+              </div>
+              <img
+                className="w-8"
+                src={data.icon ? data.icon : icon}
+                alt="weather icon"
+              />
+              <p className="text-slate-300 text-xl">{data.temp}°</p>
             </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
-          <div className="flex flex-col gap-2 items-center">
-            <div className="flex gap-1 items-center justify-center bg-slate-800 rounded-md md:rounded-lg">
-              <p className="text-sm text-slate-300 ">00:00</p>
-              <p className="text-sm text-slate-400">AM</p>
-            </div>
-            <img className="w-8" src={assets.temp_icon} />
-            <p className="text-slate-300 text-xl">24°</p>
-          </div>
+          ))}
         </div>
       </div>
       <div className="flex flex-col gap-4 p-5 bg-slate-800 rounded-md md:rounded-lg">

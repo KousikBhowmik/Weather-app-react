@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react";
 import { fetchCurrentWeather } from "../api/apiHandle.js";
 import { assets} from "../assets/assets.js";
-import weatherIcons from "../assets/weatherIcon.js";
 
 export const WeatherContext = createContext();
 
@@ -19,11 +18,9 @@ export const WeatherProvider = ({ children }) => {
     try {
       setLoading(true);
       const data = await fetchCurrentWeather(city);
-      const iconCode = Number(data.cwc.icon)
-      const iconPath = weatherIcons[iconCode]
-      if(iconPath){
-        console.log(iconPath);
-        setIcon(iconPath)
+      const selectIcon = assets[data.cwc.icon]
+      if (selectIcon) {
+        setIcon(selectIcon)
       }
       setWeather(data);
       setError(null); 
@@ -38,7 +35,6 @@ export const WeatherProvider = ({ children }) => {
     <WeatherContext.Provider
       value={{
         assets,
-        weatherIcons,
         weather,
         loading,
         error,

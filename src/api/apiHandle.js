@@ -18,12 +18,14 @@ export const fetchCurrentWeather = async (city="kolkata") => {
       const current = response.data["current"]; 
       const forecast = response.data["forecast"]["forecastday"][0];
       const name = response.data["location"]["name"];
+      const icon = current["condition"]["code"].toString();
       let temp = current["temp_c"]
       temp = Math.floor(temp)
+
       
       
       const cwc = { // current weather card
-        icon: current["condition"]["code"],
+        icon: "_" + icon,
         temp: temp.toString(),
         name: name,
         text: current["condition"]["text"].toString(),
@@ -38,8 +40,7 @@ export const fetchCurrentWeather = async (city="kolkata") => {
         humidity: current["humidity"].toString(),
         uv: current["uv"].toString(),
         cloud: current["cloud"].toString()
-      }    
-      console.log("job doneeee");
+      }
       
       return {cwc, cc};
       

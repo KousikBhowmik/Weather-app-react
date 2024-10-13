@@ -44,9 +44,9 @@ const Weather = () => {
     scrollContainer.current.scrollLeft = scrollLeft - walk;
   };
 
-  useEffect(() => {
-    getWeather(city);
-  }, [city]);
+  // useEffect(() => {
+  //   getWeather(city);
+  // }, [city]);
 
   return weather ? (
     <div className="grid grid-cols-1 md:col-span-4 gap-4">
@@ -165,13 +165,7 @@ const Weather = () => {
     </div>
   ) : (
     <div className="md:col-span-4 flex justify-center items-center space-x-2">
-      {[...Array(12)].map((_, i) => (
-        <div
-          key={i}
-          className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
-          style={{ animationDelay: `${i * 0.1}s` }}
-        ></div>
-      ))}
+      <span className="loading loading-ring loading-lg"></span>
     </div>
   );
 };

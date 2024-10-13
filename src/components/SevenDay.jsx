@@ -24,9 +24,11 @@ const SevenDay = () => {
         {sdfData.map((data, index) => (
           <div
             key={index}
-            className="flex items-center justify-between sm:bg-slate-600 sm:p-6 sm:rounded-md md:flex md:items-center md:justify-between md:bg-transparent md:p-2 "
+            className="grid grid-cols-4 sm:bg-slate-600 sm:p-6 sm:rounded-md md:bg-transparent md:p-2 "
           >
-            <p className="text-slate-300">{data.day}</p>
+            <p className="text-slate-300 col-span-2 md:text-[12px] lg:text-lg">
+              {data.day}
+            </p>
             <img className="w-8" src={data.icon ? data.icon : icon} />
             <div className="flex items-center justify-center">
               <p className="text-slate-300">{data.max_temp}</p>
@@ -37,14 +39,8 @@ const SevenDay = () => {
       </div>
     </div>
   ) : (
-    <div className="md:col-span-4 flex justify-center items-center space-x-2">
-      {[...Array(12)].map((_, i) => (
-        <div
-          key={i}
-          className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
-          style={{ animationDelay: `${i * 0.1}s` }}
-        ></div>
-      ))}
+    <div className="md:col-span-2 flex justify-center items-center space-x-2">
+      <span className="loading loading-ring loading-lg"></span>
     </div>
   );
 };

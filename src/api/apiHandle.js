@@ -1,6 +1,7 @@
 import axios, { all } from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
+import "react-toastify/dist/ReactToastify.css";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 const MAIN_URL = "https://api.weatherapi.com/v1";
@@ -129,7 +130,7 @@ export const fetchCurrentWeather = async (city = "kolkata") => {
     return { cwc, cc, dayTemp, sdfArray };
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    toast.error(error);
+    toast.error("city not found");
     throw error;
   }
 };

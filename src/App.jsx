@@ -5,6 +5,8 @@ import Weather from "./pages/Weather.jsx";
 import SevenDay from "./components/SevenDay.jsx";
 import City from "./pages/City.jsx";
 import Others from "./pages/Others.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
           <Route path="/others" element={<Others />} />
         </Routes>
         <SevenDay />
+        <ToastContainer/>
       </div>
     </div>
   );

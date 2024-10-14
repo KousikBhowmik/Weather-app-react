@@ -17,9 +17,6 @@ const SevenDay = () => {
     sdfData,
   } = useContext(WeatherContext);
 
-    useEffect(() => {
-      getWeather(city);
-    }, [city]);
   return weather ? (
     <div className=" md:col-span-2 flex flex-col h-fit gap-4 p-5 md:p-6 rounded-md md:rounded-lg bg-slate-800">
       <p className="text-sm text-slate-400">

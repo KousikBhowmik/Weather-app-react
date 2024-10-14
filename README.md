@@ -51,6 +51,5 @@ Make sure you have the following installed:
 5.  Open your browser and go to `http://localhost:"provided port number"` to view the app
 
 ## Live preview
-`Link:` <a href="https://weather-app-react-tau-ashy.vercel.app" target="_blank">Weather app live preview</a>
 
-![weather app preview](./src/assets/livepreview.png)
+<a href="https://weather-app-react-tau-ashy.vercel.app" target="_blank">![weather app preview](./src/assets/livepreview.png)</a>

@@ -1,4 +1,4 @@
-    # Weather App
+# Weather App
 
 A simple and responsive weather application built with React.js and WeatherAPI to show real-time weather information based on city names. This project allows users to search for weather data by city and displays current weather conditions, including temperature, humidity, and weather description.
 

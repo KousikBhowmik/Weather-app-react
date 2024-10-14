@@ -8,7 +8,7 @@ const Others = () => {
         Welcome to my webpage!
       </h1>
       <div className="flex flex-col gap-4 ">
-        <h2 className="text-[30px] text-green-400">About this app</h2>
+        <h2 className="text-[30px] text-blue-500">About this app</h2>
         <p className="text-sm md:text-[18px]">
           A simple and responsive weather application built with React.js and
           WeatherAPI to show real-time weather information based on city names.
@@ -16,7 +16,7 @@ const Others = () => {
           displays current weather conditions, including temperature, humidity,
           and weather description.
         </p>
-        <p className="text-blue-600">
+        <p className="text-blue-600 text-[18px]">
           For source code click here {"  "}
           <Link
             to="https://github.com/KousikBhowmik/Weather-app-react" target="_blank"

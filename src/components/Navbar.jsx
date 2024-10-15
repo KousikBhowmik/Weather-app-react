@@ -96,7 +96,7 @@ const Navbar = () => {
           className="mt-1 mb-1 px-4 rounded-md flex items-center gap-1  hover:bg-gray-600"
         >
           <img src={assets.menu_options} className="w-8  " />
-          <p className=" text-sm text-gray-950">Options</p>
+          <p className=" text-sm text-gray-950">Others</p>
         </NavLink>
       </div>
     </div>

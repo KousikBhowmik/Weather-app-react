@@ -79,6 +79,9 @@ import Roma from "./city_images/roma.jpg";
 import Manchester from "./city_images/manchester.jpg";
 import London from "./city_images/london.jpg";
 import Hyderabad from "./city_images/hyderabad.jpg";
+import NewYork from "./city_images/newyork.jpg";
+import LasVegas from "./city_images/lasvegas.jpg";
+import Tokyo from "./city_images/tokyo.jpg";
 
 const assets = {
   menu_bar,
@@ -159,6 +162,9 @@ const assets = {
   Manchester,
   London,
   Hyderabad,
+  NewYork,
+  LasVegas,
+  Tokyo,
 };
 
 const cityNames = [
@@ -175,6 +181,9 @@ const cityNames = [
   "Manchester",
   "London",
   "Hyderabad",
+  "NewYork",
+  "LasVegas",
+  "Tokyo"
 ];
 
 export { assets, cityNames };

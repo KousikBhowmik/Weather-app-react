@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useContext, useRef, useLayoutEffect } from "react";
 import { WeatherContext } from "../context/context.jsx";
 
 const Weather = () => {
@@ -45,7 +45,7 @@ const Weather = () => {
     scrollContainer.current.scrollLeft = scrollLeft - walk;
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getWeather(city);
   }, [city]);
 

@@ -45,6 +45,8 @@ const Weather = () => {
     scrollContainer.current.scrollLeft = scrollLeft - walk;
   };
 
+
+
   useLayoutEffect(() => {
     getWeather(city);
   }, [city]);

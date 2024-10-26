@@ -37,7 +37,7 @@ Make sure you have the following installed:
     ```bash
     npm install
     ```
-3. Create a `.env` file in the root directory and add your WeatherAPI key:
+3. First vist [WeatherApi website](https://www.weatherapi.com/), and create a free account to get a free api key. Then create a `.env` file in the root directory and add your WeatherAPI key:
     ```bash
     npm i dotenv
     # inside env file
@@ -50,6 +50,4 @@ Make sure you have the following installed:
     ```
 5.  Open your browser and go to `http://localhost:"provided port number"` to view the app
 
-## Live preview
-
-<a href="https://weather-app-react-tau-ashy.vercel.app" target="_blank">![weather app preview](./src/assets/livepreview.png)</a>
+## Happy coding 😊
